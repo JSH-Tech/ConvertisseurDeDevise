@@ -32,8 +32,8 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="10">
             <TextBlock Foreground="Purple" Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Type d'operation:"/>
-            <RadioButton Foreground="Purple" Name="btnRadio_Achat" Content="Achat" IsChecked="False" Style="{StaticResource MaterialDesignLightRadioButton}"  Checked="RadioButton_Checked"/>
-            <RadioButton Foreground="Purple" Name="btnRadio_Vente" Content="Vente" IsChecked="False" Style="{StaticResource MaterialDesignLightRadioButton}"  Checked="RadioButton_Checked"/>
+            <RadioButton Foreground="Purple" Name="btnRadio_Achat" Content="Achat" IsChecked="False" Style="{StaticResource MaterialDesignLightRadioButton}"  Checked="RadioButton_Checked" FontWeight="Bold"/>
+            <RadioButton Foreground="Purple" Name="btnRadio_Vente" Content="Vente" IsChecked="False" Style="{StaticResource MaterialDesignLightRadioButton}"  Checked="RadioButton_Checked" FontWeight="Bold"/>
         </DockPanel >
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0" Name="sous_grid">
@@ -41,24 +41,25 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <GroupBox  materialDesign:ElevationAssist.Elevation="Dp6" BorderThickness="0" Header="Montant à convertir" Grid.Row="1" Margin="5,0,0,0">
                 <StackPanel>
-                    <ComboBox Name="ComboBox_DeviseAConvertir" materialDesign:HintAssist.Hint="Devise" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    <ComboBox Name="ComboBox_DeviseAConvertir" materialDesign:HintAssist.Hint="Devise" Style="{StaticResource MaterialDesignOutlinedComboBox}" FontWeight="Bold">
                         <ComboBoxItem Content="CAD" Name="AConvertir_CAD"/>
                         <ComboBoxItem Content="USD" Name="AConvertir_USD"/>
                         <ComboBoxItem Content="EUR" Name="AConvertir_EUR"/>
                     </ComboBox>
                     <TextBox Name="textBox_ValeurAConvertir" Height="52" materialDesign:HintAssist.Hint="Entrer le montant à convertir" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,10,0,0"   materialDesign:HintAssist.HelperText="Entrer le montant a convertir"/>
+                    <TextBox Name="textBox_TauxDeChange" Height="52" materialDesign:HintAssist.Hint="Taux de change" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,15,0,0" IsEnabled="False"/>
                 </StackPanel>
             </GroupBox>
 
-        
-        
+
+
 
             <GroupBox Grid.Column="1" materialDesign:ElevationAssist.Elevation="Dp6" BorderThickness="0" Header="Montant resultat" Margin="8,0,0,0">
                 <StackPanel>
-                    <ComboBox Name="ComboBox_DeviseConverti" materialDesign:HintAssist.Hint="Devise" Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                    <ComboBox Name="ComboBox_DeviseConverti" materialDesign:HintAssist.Hint="Devise" Style="{StaticResource MaterialDesignOutlinedComboBox}" FontWeight="Bold">
                         <ComboBoxItem Content="CAD" Name="CAD_Converti"/>
                         <ComboBoxItem Content="USD" Name="USD_Converti"/>
                         <ComboBoxItem Content="EUR" Name="EUR_Converti"/>
@@ -67,7 +68,19 @@
                 </StackPanel>
             </GroupBox>
         </Grid>
+        <Grid Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Name="btn_Conversion"  Width="150" Height="40" Margin="0,10,0,0" HorizontalAlignment="Center" Content="Convertir" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource MaterialDesignOutlinedDarkButton}" ToolTip="MaterialDesignOutlinedButton" Click="btn_Conversion_Click" FontWeight="Bold" />
 
-        <Button Name="btn_Conversion"  Width="150" Height="40" Margin="0,10,0,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="2" Content="Convertir" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource MaterialDesignOutlinedDarkButton}" ToolTip="MaterialDesignOutlinedButton" Click="btn_Conversion_Click" />
+            <Button Name="btn_Reinitialiser" Margin="0,10,0,0" Grid.Column="1" Width="150" Height="40" materialDesign:ButtonProgressAssist.IsIndeterminate="True" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True" materialDesign:ButtonProgressAssist.Value="-1" Content="Reinitialiser" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource MaterialDesignRaisedButton}" Click="btn_Reinitialiser_Click" FontWeight="Bold" />
+
+            <Button Name="btn_Fermer" Margin="0,10,0,0" Grid.Column="2" Width="150" Height="40" Content="Fermer" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"   Style="{StaticResource MaterialDesignPaperButton}"
+  ToolTip="Resource name: MaterialDesignPaperButton" Click="btn_Fermer_Click" FontWeight="Bold" />
+        </Grid>
+
     </Grid>
 </Window>
